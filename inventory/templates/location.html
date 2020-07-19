@@ -1,10 +1,15 @@
 {% extends 'base-template.html' %}
 {% block content %}
     <div class="container">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <th scope="col">Location ID</th>
                 <th scope="col">Location Name</th>
+                <th>
+                    <a href="{{ url_for('deleteAll',type='location') }}">
+                        <button name="button" type="button" class="btn btn-danger" value= "deleteAll" >deleteAll</button><br>
+                    </a>
+                </th>
                 <th></th>
             </thead>
             <tbody>

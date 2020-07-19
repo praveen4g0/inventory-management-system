@@ -1,15 +1,30 @@
 {% extends 'base-template.html' %}
 {% block content %}
     <div class="container">
+        <form action = "/upload" method = "POST" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" id="filename" name="filename">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+          </form>
+    </div>
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+    <div class="container">
         {% if products == None or products|length == 0 %}
-            <div class="container">
-                <h3 align="center" class="font-weight-light">No Product Data Available Yet</h3>
+            <div>
+                <h3 align="center" class="font-weight-light">No Search Results found yet!</h3>
             </div>
         {% else %}
-            <!-- Div to list all products -->
             <div class="container">
-                <h3>products</h3>
-                <table id="myTable" class="table table-striped">
+              <h2>Inventory summary</h2>
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Material Id</th>
@@ -36,7 +51,8 @@
                                 <td>{{ product[6] }}</td>
                                 <td>{{ product[7] }}</td>
                                 <td>{{ product[8] }}</td>
-                                <td>{{ product[9] }}</td>  
+                                <td>{{ product[9] }}</td>
+                                <td>{{ product[10] }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

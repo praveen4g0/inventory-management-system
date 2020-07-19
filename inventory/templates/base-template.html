@@ -2,12 +2,18 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %} {{ title }} - Inventory Management {% endblock %}</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
         <link rel="icon" href="{{ url_for('static', filename='site_icon.png') }}" class="js-favicon">
         <!--div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div-->
         <script src="{{ url_for('static', filename='jquery-3.3.1.slim.min.js') }}"></script>
         <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+        <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
         {% if title == 'ProductMovement' %}
             <style>
                 .slide-container {
@@ -60,17 +66,25 @@
                   <button type="button" class="btn btn-primary" onclick="location.reload();location.href='{{ link.index }}'">Summary</button>
                 </div>
                 <div class="col-auto">
+                    <button type="button" class="btn btn-primary" onclick="location.reload();location.href='{{ link.search }}'">Search</button>
+                  </div>
+                <div class="col-auto">
                   <button type="button" class="btn btn-primary" onclick="location.reload();location.href='{{ link.location }}'">Location</button>
                 </div>
                 <div class="col-auto">
                   <button type="button" class="btn btn-primary" onclick="location.reload();location.href='{{ link.product }}'">Products</button>
                 </div>
                 <div class="col-auto">
-                  <button type="button" class="btn btn-primary" onclick="location.reload();location.href='{{ link.movement }}'">Logistics</button>
-                </div>
+                    <button type="button" class="btn btn-primary" onclick="location.reload();location.href='{{ link.upload }}'">Upload</button>
+                  </div>
             </div>
 	    </nav>
         {% block content %}
         {% endblock %}
     </body>
+    <script>
+        $(document).ready(function(){
+            $('#myTable').dataTable();
+        });
+    </script>
 </html>

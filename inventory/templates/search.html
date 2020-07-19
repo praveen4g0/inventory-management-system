@@ -1,15 +1,24 @@
 {% extends 'base-template.html' %}
 {% block content %}
     <div class="container">
+         <form action = "/search" method = "POST">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" name="Material_id">
+                <div class="input-group-append">
+                  <button class="btn btn-success" type="submit">Go</button>  
+                 </div>
+              </div>
+        </form>
+    </div>
+    <div class="container">
         {% if products == None or products|length == 0 %}
-            <div class="container">
-                <h3 align="center" class="font-weight-light">No Product Data Available Yet</h3>
+            <div>
+                <h3 align="center" class="font-weight-light">No Search Results found yet!</h3>
             </div>
         {% else %}
-            <!-- Div to list all products -->
             <div class="container">
-                <h3>products</h3>
-                <table id="myTable" class="table table-striped">
+              <h2>Inventory summary</h2>
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Material Id</th>
@@ -36,12 +45,12 @@
                                 <td>{{ product[6] }}</td>
                                 <td>{{ product[7] }}</td>
                                 <td>{{ product[8] }}</td>
-                                <td>{{ product[9] }}</td>  
+                                <td>{{ product[9] }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-            </div>
-        {% endif %}
+            </div>    
+        {% endif %}   
     </div>
 {% endblock %}
